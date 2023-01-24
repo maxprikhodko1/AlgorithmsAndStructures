@@ -80,49 +80,23 @@ export class MultiLevelLinkedList
             }
             return temp;
         };
-
-        /*Base case*/
         let node = MultiLevelLinkedList.clone(head);
         if (node == null)
         {
             return;
         }
-         
         let tmp:LLNode<T> = null;
- 
-        /* Find tail node of first
-        level linked list */
         let tail:LLNode<T> = getTail(node);
-        // while (tail.next != null)
-        // {
-        //     tail = tail.next;
-        // }
- 
-        // One by one traverse through
-        // all nodes of first level
-        // linked list till we reach the tail node
         let cur: LLNode<T> = node;
         while (cur != null)
         {
- 
-            // If current node has a child
             if (cur.child != null)
             {
- 
-                // then append the child at
-                // the end of current list
                 tail.next = cur.child;
- 
-                // and update the tail to new last node
                 tmp = getTail(cur.child);
-                // while (tmp.next != null)
-                // {
-                //     tmp = tmp.next;
-                // }
                 tail = tmp;
+                cur.child = null;
             }
- 
-            // Change current node
             cur = cur.next;
         }
         return node;

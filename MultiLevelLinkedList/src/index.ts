@@ -32,3 +32,7 @@ function getFlattened<T>(head: LLNode<T>): T[]
     }
     return arr;
 }
+
+let head = getMultiLevelLinkedList();
+let headFl = MultiLevelLinkedList.flatten(head);
+console.log(1);
