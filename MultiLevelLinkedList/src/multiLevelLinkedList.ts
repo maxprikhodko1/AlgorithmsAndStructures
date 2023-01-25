@@ -244,4 +244,33 @@ export class MultiLevelLinkedList
         node.child = null;
         return head;
     }
+
+    public static find<T>(head: LLNode<T>, value: T): LLNode<T> | null 
+    {
+        const findNode = (layerRoot: LLNode<T> | null): LLNode<T> | null => 
+        {
+            let current = layerRoot;  
+            while (current != null) 
+            {
+                if (Object.is(value, current.data)) 
+                {
+                    return current;
+                }
+                const foundNode = findNode(current.child);
+                if (foundNode !== null) 
+                {
+                    return foundNode;
+                }
+                current = current.next;
+            }
+          return null;
+        };
+        return findNode(head);
+    }
+
+    public static exists<T>(head: LLNode<T>, value: T): boolean 
+    {
+        const foundNode = this.find(head, value);
+        return foundNode !== null;
+    }
 }
