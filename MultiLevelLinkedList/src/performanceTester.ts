@@ -1,18 +1,4 @@
-//import { max, min } from "../common/math";
-//import { generateBenchmarkReportEntry } from "./report-generator";
-//import { reportBenchmarkCli } from "./reporter";
-// import {
-//   AfterAllCallback,
-//   AfterEachCallback,
-//   BeforeAllCallback,
-//   BeforeEachCallback,
-//   BenchmarkCallback,
-//   BenchmarkCaseDef,
-//   BenchmarkReport,
-//   BenchmarkSuiteOptions,
-// } from "./types";
 import CliTable3 = require("cli-table3");
-
 
 type BeforeAllCallback = () => void;
 type AfterAllCallback = () => void;
@@ -109,11 +95,11 @@ export const reportBenchmarkCli = (params: {
   
     const table = new CliTable3({
       head: [
-        "Name",
-        "Number of runs",
-        "Min (ns)",
-        "Max (ns)",
-        "Mean (ns)",
+        "Operation",
+        "Count of runs",
+        "Min time (ns)",
+        "Max time (ns)",
+        "Mean time(ns)",
         "Std (ns)",
       ],
     });
