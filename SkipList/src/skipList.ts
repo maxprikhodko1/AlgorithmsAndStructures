@@ -101,14 +101,15 @@ export class SkipList
         }
     }
 
-    public insert(key:number): void
+    public insert(key:number, printMsg: boolean = false): void
     {
         let rlevel:number = this.randomLevel();
         this.insertElement(key, rlevel);
-        process.stdout.write("Successfully Inserted key " + key + "\n");//System.out.println("Successfully Inserted key " + key);
+        if(printMsg)
+            process.stdout.write("Successfully Inserted key " + key + "\n");//System.out.println("Successfully Inserted key " + key);
     }
 
-    public delete(key: number): void
+    public delete(key: number, printMsg: boolean = false): void
     {
         let current:SLNode = this.header;
         // create update array and initialize it
@@ -150,11 +151,12 @@ export class SkipList
             {
                 this.level --;
             }
-            process.stdout.write("Successfully deleted key "+ key + "\n");//System.out.println("Successfully deleted key "+ key);
+            if(printMsg)
+                process.stdout.write("Successfully deleted key "+ key + "\n");//System.out.println("Successfully deleted key "+ key);
         }
     }
 
-    public find(key: number): boolean
+    public find(key: number, printMsg: boolean = false): boolean
     {
         let current:SLNode = this.header;
         /* start from highest level of skip list
@@ -173,12 +175,14 @@ export class SkipList
         // current has to be the key if it is present 
         if(current !=null && current.key==key) 
         {
-            process.stdout.write("Key found\n"); //System.out.println("Key found");  
+            if(printMsg)
+                process.stdout.write("Key found\n"); //System.out.println("Key found");  
             return true;              
         }
         else
         {
-            process.stdout.write("Key not found\n");//System.out.println("Key not found");
+            if(printMsg)
+                process.stdout.write("Key not found\n");//System.out.println("Key not found");
             return false;
         }   
    }
